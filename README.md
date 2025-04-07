@@ -1,4 +1,4 @@
-✈️ Travel Planner Web App
+#✈️ Travel Planner Web App
 
 The Travel Planner App is a simple, interactive web-based application that helps users plan their trips efficiently. After logging in, users can enter travel details like origin, destination, travel dates, and duration. The app then generates a day-by-day itinerary, including real local attractions fetched using the GeoNames and OpenStreetMap APIs, along with interactive maps.
 
