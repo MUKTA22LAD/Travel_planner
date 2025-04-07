@@ -4,8 +4,10 @@ A web app that helps users plan trips by selecting destinations, dates, and view
 ## 🧭 About
 This project was developed as part of our internship, with the goal of simplifying travel planning. Users can log in, input their destination and travel dates, and receive a personalized itinerary with real attractions and mapped routes. 
 ## Screenshots
-![Login Page](screenshots/login.png)
-![Trip Planner](screenshots/planner.png)
+![Login Page](Travel_planner/login.png)
+![Trip_form](Travel_planner/form.png)
+![Trip_form](Travel_planner/map.png)
+![Trip_form](Travel_planner/iterinarary.png)
 
 ## ✨ Features
 - User login authentication
