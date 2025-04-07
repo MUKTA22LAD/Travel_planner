@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <h1> Travel Planner</h1>
+
+    <label>From:</label>
+    <input type="text" id="from" placeholder="Enter starting location">
+    
+    <label>To:</label>
+    <input type="text" id="to" placeholder="Enter destination">
+    
+    <label>Start Date:</label>
+    <input type="date" id="startDate">
+    
+    <label>Number of Days:</label>
+    <input type="number" id="days" min="1" placeholder="Trip Duration">
+    
+    <button onclick="generateItinerary()">Plan Trip</button>
+
+    <h2>Your Itinerary</h2>
+    <div id="itinerary"></div>
+
+    <h2>🗺️ Map & Route</h2>
+    <div id="map" style="height: 400px;"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

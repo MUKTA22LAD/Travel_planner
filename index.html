@@ -1,0 +1,78 @@
+<!-- Page 1: Login Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Travel Planner</title>
+
+    <style>
+     
+     body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+              
+        }
+       
+        form{
+            position:absolute;
+            top:30%;
+            left:40%;
+            text-align: center;
+            }
+        input{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 80x 0;
+            display: inline-block;
+            border: 1px solid #770c0c;
+            box-sizing: border-box;
+        }
+       button{
+        background-color: blue;
+        color: white;
+        padding: 10px 40px 10px 10px;
+        border:none;
+        cursor: pointer;
+        width: 10%;
+       }
+       button:hover{
+        opacity: 0.4;
+       }
+       .container{
+        padding: 16px;
+       }
+       h1{
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 400px;
+        top: 50%;
+       }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Login</h1>
+    <form id="loginForm">
+        <label>Email</label>
+        <input type="email" id="email" required><br><br>
+        <label>Password</label>
+        <input type="password" id="password" required><br><br>
+        <button type="button" onclick="login()">Login</button>
+    </form>
+    <script>
+        function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            
+            if (email === "user@example.com" && password === "password") {
+                localStorage.setItem("loggedIn", "true");
+                window.location.href = "trip-form.html";
+            } else {
+                alert("Invalid credentials!");
+            }
+        }
+    </script>
+</body>
+</html>
+
+

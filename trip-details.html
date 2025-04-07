@@ -1,0 +1,65 @@
+<!-- Page 3: Trip Itinerary -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Itinerary</title>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <h2 style="text-align: center;">Your Trip Itinerary</h2>
+    <div id="tripDetails"></div>
+    <div id="map" style="height: 400px;"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const tripData = JSON.parse(localStorage.getItem("tripData"));
+            if (!tripData) {
+                alert("No trip data found! Redirecting...");
+                window.location.href = "trip-form.html";
+                return;
+            }
+            
+            document.getElementById("tripDetails").innerHTML = `<h3>Trip from ${tripData.from} to ${tripData.to}</h3>
+            <p>Start Date: ${tripData.startDate}</p>
+            <p>Duration: ${tripData.days} Days</p>`;
+            
+            getCoordinates(tripData.from, tripData.to);
+        });
+        
+        function getCoordinates(from, to) {
+            const urlFrom = `https://nominatim.openstreetmap.org/search?format=json&q=${from}`;
+            const urlTo = `https://nominatim.openstreetmap.org/search?format=json&q=${to}`;
+            
+            Promise.all([
+                fetch(urlFrom).then(res => res.json()),
+                fetch(urlTo).then(res => res.json())
+            ]).then(data => {
+                if (data[0].length === 0 || data[1].length === 0) {
+                    alert("Invalid locations! Try again.");
+                    return;
+                }
+                
+                let fromCoords = [data[0][0].lat, data[0][0].lon];
+                let toCoords = [data[1][0].lat, data[1][0].lon];
+                
+                displayMap(fromCoords, toCoords, from, to);
+            }).catch(error => {
+                alert("Error fetching location data!");
+                console.error(error);
+            });
+        }
+        
+        function displayMap(fromCoords, toCoords, from, to) {
+            let map = L.map('map').setView(fromCoords, 5);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            L.marker(fromCoords).addTo(map).bindPopup(`Start: ${from}`).openPopup();
+            L.marker(toCoords).addTo(map).bindPopup(`End: ${to}`).openPopup();
+        }
+    </script>
+</body>
+</html>

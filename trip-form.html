@@ -1,0 +1,84 @@
+<!-- Page 2: Trip Form -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;   
+        }
+       
+        h2 {
+            color: #010000;
+            text-align: center;
+            margin-left: 40%;
+            font-size: 42px;
+        }
+       
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: blue;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+        }
+        button:hover {
+           opacity: 0.4; ;
+        }
+        form{
+            position:absolute;
+            top:30%;
+            left:40%;
+            text-align:2px;
+            border: 2px solid black;
+            padding: 1%;
+            background-color: bisque;
+        }
+        
+    </style>
+</head>
+<body>
+    <h2 >Plan Your Trip</h2>
+    <form id="tripForm">
+        <label>From:</label><br>
+        <input type="text" id="from" required><br><br>
+        <label>To:</label><br>
+        <input type="text" id="to" required><br><br>
+        <label>Start Date:</label><br>
+        <input type="date" id="startDate" required><br><br>
+        <label>Number of Days:</label><br>
+        <input type="number" id="days" min="1" required><br><br>
+        <button type="button" onclick="saveTripDetails()">Next</button><br>
+    </form>
+    <script>
+        if (!localStorage.getItem("loggedIn")) {
+            window.location.href = "index.html";
+        }
+        
+        function saveTripDetails() {
+            const from = document.getElementById("from").value;
+            const to = document.getElementById("to").value;
+            const startDate = document.getElementById("startDate").value;
+            const days = document.getElementById("days").value;
+            
+            if (!from || !to || !startDate || !days) {
+                alert("Please enter all details!");
+                return;
+            }
+            
+            const tripData = { from, to, startDate, days };
+            localStorage.setItem("tripData", JSON.stringify(tripData));
+            window.location.href = "trip-details.html";
+        }
+    </script>
+</body>
+</html>
